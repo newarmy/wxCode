@@ -1,0 +1,56 @@
+/* pages/me/me.wxss */
+.user-area{
+  position: relative;
+  height: 300rpx;
+  width: 750rpx;
+  background-color:green;
+}
+.user-row{
+  padding:  40rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+.user-img{
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  background-color: transparent;
+  margin-right: 30rpx;
+}
+.user-name{
+  color:#fff;
+  line-height: 80rpx;
+  font-size: 40rpx;
+}
+
+.active-code{
+  position: absolute;
+  right: 40rpx;
+  bottom: 40rpx;
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.active-input{
+  display: block;
+  width: 750rpx;
+  padding: 0 40rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+  font-size: 36rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+.use-active-code-btn, .contact-btn{
+   padding: 0;
+   width: 600rpx !important;
+   height: 80rpx !important;
+   line-height: 80rpx !important;
+   background-color: blue !important;
+   color: #fff;
+   text-align: center;
+   border-radius: 40rpx;
+   font-size: 36rpx;
+   margin-bottom: 40rpx;
+}

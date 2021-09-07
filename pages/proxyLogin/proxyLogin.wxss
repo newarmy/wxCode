@@ -1,0 +1,88 @@
+/* pages/proxyLogin/proxyLogin.wxss */
+.form-area, .create-code-area{
+  width: 690rpx;
+  margin: 0 auto;
+  padding-top: 300rpx;
+  color: #333;
+  font-size: 36rpx;
+}
+.form-item{
+  width: 500rpx;
+  height: 110rpx;
+  border-bottom: 2rpx solid #ccc;
+  margin:0 auto 30rpx;
+  display: flex;
+  justify-content: center;
+}
+.form-item{
+  border-bottom: none;
+}
+.input-item{
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 10rpx 30rpx;
+  font-size: 32rpx;
+  color:#333;
+  background-color:#fff !important;
+  border: 1rpx solid #ccc;
+  border-radius: 30rpx;
+}
+.submit-item{
+  width: 300rpx !important;
+  height: 80rpx !important;
+  background: blue !important;
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: normal !important;
+  font-size: 36rpx;
+}
+
+.title-area, .last-num{
+    text-align: center;
+    line-height: 80rpx;
+    margin-bottom: 30rpx;
+}
+.code-input{
+  display: block;
+  width: 400rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 10rpx 30rpx;
+  font-size: 32rpx;
+  color:#333;
+  background-color:#fff !important;
+  border: 1rpx solid #ccc;
+  border-radius: 30rpx;
+  margin: 0 auto 10rpx;
+}
+.create-code-btn{
+  width: 300rpx !important;
+  height: 80rpx !important;
+  background: blue !important;
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: normal !important;
+  font-size: 36rpx;
+  margin: 30rpx auto 400rpx !important;
+}
+
+.num-btn{
+  width: 400rpx !important;
+  height: 80rpx !important;
+  background: blue !important;
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: normal !important;
+  font-size: 36rpx;
+  margin: 0 auto 20rpx !important;
+}

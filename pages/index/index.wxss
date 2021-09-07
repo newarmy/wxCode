@@ -1,0 +1,77 @@
+button {
+  margin: 0;
+  padding: 0;
+  display: block;
+  font-size: 32rpx;
+}
+button::after {
+  border: 0;
+}
+button:not([size='mini']){
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+.login-box{
+  display:flex;
+  justify-content: flex-end;
+  width: 690rpx;
+  height: 100rpx;
+  margin: 0 auto 200rpx;
+}
+.login-btn, .login-success-box{
+  height: 100rpx !important;
+  width: 100rpx !important;
+  line-height: 100rpx;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 32rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.user-image{
+  height: 100rpx !important;
+  width: 100rpx !important;
+}
+.upload-btn-box{
+  display:flex;
+  justify-content: center;
+  width: 690rpx;
+  margin: 0 auto 200rpx;
+}
+.upload-btn-from-album, .upload-btn-from-camera{
+  height: 300rpx !important;
+  width: 300rpx !important;
+  line-height: 300rpx;
+}
+.upload-btn-from-camera{
+  margin-left: 90rpx;
+}
+
+.service-box{
+  display:flex;
+  justify-content: center;
+  width: 690rpx;
+  line-height: 50rpx;
+  font-size: 32rpx;
+  color:#333;
+}
+
+.to-service-btn{
+  font-size: 32rpx;
+  font-weight: normal !important;
+  color:#333;
+  height: 50rpx !important;
+  width: 200rpx !important;
+  line-height: 50rpx;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #fff !important;
+  text-align: center;
+}
+.to-proxy-btn{
+  margin-left: 100rpx;
+  height: 50rpx !important;
+  width: 200rpx !important;
+  text-align: center;
+}

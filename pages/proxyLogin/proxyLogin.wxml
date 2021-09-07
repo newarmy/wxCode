@@ -1,0 +1,41 @@
+<!--pages/proxyLogin/proxyLogin.wxml-->
+<view class="">
+   <view class="form-area">
+     <view class="form-item">
+       <input type="text" placeholder="请输入用户名" class="input-item"/>
+     </view>
+     <view class="form-item">
+       <input type="text" password="true" placeholder="请输入密码" class="input-item"/>
+     </view>
+     <view class="form-item">
+       <button class="submit-item">登录</button>
+     </view>
+   </view>
+
+   <view class="create-code-area">
+     <view class="title-area">生成授权码</view>
+     <view class="last-num">剩余授权次数： 1000</view>
+     <input class="code-input" placeholder="输入激活次数" />
+     <button class="create-code-btn">生成</button>
+
+     <button class="num-btn">添加授权次数</button>
+     <button class="num-btn">创建代理账户</button>
+   </view>
+
+   <view class="layer-area">
+     <view class="title-area">生成授权次数</view>
+     <input class="code-input" placeholder="输入激活码" />
+     <button class="create-code-btn">添加</button>
+   </view>
+   <view class="layer-area">
+     <view class="form-item">
+       <input type="text" placeholder="请输入用户名" class="input-item"/>
+     </view>
+     <view class="form-item">
+       <input type="text" password="true" placeholder="请输入密码" class="input-item"/>
+     </view>
+     <view class="form-item">
+       <button class="submit-item">创建</button>
+     </view>
+   </view>
+</view>
