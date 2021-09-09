@@ -1,0 +1,16 @@
+<!--pages/questionList/questionList.wxml-->
+<view class="question-header">为您识别的题目</view>
+<view class="question-list">
+   <view class="question-item" wx:for="{{list}}" wx:key="{{item.id}}"> 
+      <view class="question-ask">
+        <text class="first">【问题】:</text>
+        {{item.content}}
+      </view>
+      <view class="question-answer">
+        <text class="first">【答案】:</text>
+        {{item.answer}}
+      </view>
+      <image wx:if="{{item.pic}}" mode="widthFix" src="{{item.pic}}" class="question-image"></image>
+   </view>
+</view>
+

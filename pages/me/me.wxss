@@ -3,13 +3,25 @@
   position: relative;
   height: 300rpx;
   width: 750rpx;
-  background-color:green;
+  background-color:#5AF0DB;
 }
 .user-row{
   padding:  40rpx;
   height: 100rpx;
   display: flex;
   justify-content: flex-start;
+}
+.login-btn{
+  height: 100rpx !important;
+  width: 100rpx !important;
+  line-height: 100rpx;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 32rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #4587FF;
+  color:#fff;
 }
 .user-img{
   height: 80rpx;
@@ -31,8 +43,13 @@
   color: #fff;
   font-size: 32rpx;
 }
-
+.content-area{
+  box-sizing: border-box;
+  padding: 20rpx 0;
+  width: 750rpx;
+}
 .active-input{
+  box-sizing: border-box;
   display: block;
   width: 750rpx;
   padding: 0 40rpx;
@@ -47,7 +64,7 @@
    width: 600rpx !important;
    height: 80rpx !important;
    line-height: 80rpx !important;
-   background-color: blue !important;
+   background-color: #4587FF !important;
    color: #fff;
    text-align: center;
    border-radius: 40rpx;

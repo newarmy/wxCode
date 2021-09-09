@@ -1,12 +1,9 @@
-// index.js
-
-const constants = require("../../utils/http/constants")
 
 // 获取应用实例
 const app = getApp()
 let constant = require('../../utils/http/constants');
 let sesstion = require('../../utils/http/session');
-
+let promiseFunc = require('../../utils/http/promise');
 const qiniuUploader = require("../../utils/sdk/qiniuUploader");
 // index.js
 
@@ -42,7 +39,7 @@ Page({
   data: {
     openid: null,
     userInfo: {},
-    
+    imageObject: []
   },
   
   onLoad() {
@@ -62,6 +59,7 @@ Page({
     wx.getUserProfile({
       desc: '用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
+        console.log(res);
         this.setData({
           userInfo: res.userInfo
         });
@@ -90,11 +88,11 @@ Page({
 function didPressChooesImage(that, imageFromType) {
   // 初始化七牛云配置
   initQiniu();
-  // 置空messageFileObject，否则在第二次上传过程中，wxml界面会存留上次上传的信息
   let timestamp = 'niu'+Date.now();
+  
   that.setData({
-      'imageObject': {},
-      'imageProgress': {},
+      "imageProgress": 0,
+      "imageObject": {},
       "timestamp": timestamp,
   });
   // 微信 API 选择图片（从相册）
@@ -103,6 +101,9 @@ function didPressChooesImage(that, imageFromType) {
       count: 1,
       sourceType: [imageFromType],
       success: function (res) {
+        wx.showLoading({
+          title: '图片识别中....',
+        })
           var filePath = res.tempFilePaths[0];
           // wx.chooseImage 目前微信官方尚未开放获取原图片名功能(2020.4.22)
           // 向七牛云上传
@@ -110,6 +111,7 @@ function didPressChooesImage(that, imageFromType) {
               that.setData({
                   'imageObject': res
               });
+              requestQuestionData(that, timestamp);
               console.log('提示: wx.chooseImage 目前微信官方尚未开放获取原图片名功能(2020.4.22)');
               console.log('file url is: ' + res.fileURL);
           }, (error) => {
@@ -118,16 +120,12 @@ function didPressChooesImage(that, imageFromType) {
           // 此项为qiniuUploader.upload的第四个参数options。若想在单个方法中变更七牛云相关配置，可以使用上述参数。如果不需要在单个方法中变更七牛云相关配置，则可使用 null 作为参数占位符。推荐填写initQiniu()中的七牛云相关参数，然后此处使用null做占位符。
           // 若想自定义上传key，请把自定义key写入此处options的key值。如果在使用自定义key后，其它七牛云配置参数想维持全局配置，请把此处options除key以外的属性值置空。
           // 启用options参数请记得删除null占位符
-          // {
-          //   region: 'NCN', // 华北区
-          //   uptokenURL: 'https://[yourserver.com]/api/uptoken',
-          //   domain: 'http://[yourBucketId].bkt.clouddn.com',
-          //   shouldUseQiniuFileName: false,
-          //   key: 'testKeyNameLSAKDKASJDHKAS',
-          //   uptokenURL: 'myServer.com/api/uptoken'
-          // },
           {
-            key:timestamp
+            region: 'SCN', // 华北区
+            uptokenURL: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/pic/uploadtoken',
+            domain: 'http://[yourBucketId].bkt.clouddn.com',
+            shouldUseQiniuFileName: false,
+            key: timestamp,
           },
           (progress) => {
               that.setData({
@@ -141,3 +139,30 @@ function didPressChooesImage(that, imageFromType) {
       }
   })
 }
+
+function requestQuestionData(that, imageKey) {
+  promiseFunc({
+     url: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/analysis',
+     header: {
+      'X-WX-OPENID': 123456
+     },
+     data: {
+       openId:"123456",
+       picId: imageKey
+     },
+     method: 'POST'
+  }).then(function(json) {
+      if(json.data) {
+         handlerAnalysis(that, json.data);
+      }
+  });
+}
+function handlerAnalysis(that, data) {
+   let dataStr = JSON.stringify(data);
+   wx.hideLoading({
+     success: (res) => {},
+   })
+   wx.navigateTo({
+     url: '/pages/questionList/questionList?list='+dataStr,
+   });
+} 

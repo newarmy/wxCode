@@ -147,9 +147,12 @@
     function getQiniuToken(callback) {
         wx.request({
             url: config.qiniuUploadTokenURL,
+            header: {
+                'X-WX-OPENID': 123456
+            },
             success: function (res) {
                 console.log(res.data);
-                var token = res.data;
+                var token = res.data.data;
                 if (token && token.length > 0) {
                     config.qiniuUploadToken = token;
                     if (callback) {

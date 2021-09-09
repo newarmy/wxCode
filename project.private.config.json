@@ -1,0 +1,29 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/proxyLogin/proxyLogin",
+          "pathName": "pages/proxyLogin/proxyLogin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/questionList/questionList",
+          "pathName": "pages/questionList/questionList",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

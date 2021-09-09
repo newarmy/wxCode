@@ -28,6 +28,8 @@ button:not([size='mini']){
   font-size: 32rpx;
   border-radius: 50%;
   overflow: hidden;
+  background-color: #4587FF;
+  color:#fff;
 }
 .user-image{
   height: 100rpx !important;
@@ -54,24 +56,27 @@ button:not([size='mini']){
   width: 690rpx;
   line-height: 50rpx;
   font-size: 32rpx;
-  color:#333;
+  color:#fff;
 }
 
 .to-service-btn{
   font-size: 32rpx;
   font-weight: normal !important;
-  color:#333;
+  color:#fff !important;
   height: 50rpx !important;
   width: 200rpx !important;
   line-height: 50rpx;
   padding: 0 !important;
   margin: 0 !important;
-  background: #fff !important;
+  background: #4587FF !important;
   text-align: center;
+  border-radius: 25rpx !important;
 }
 .to-proxy-btn{
   margin-left: 100rpx;
   height: 50rpx !important;
   width: 200rpx !important;
+  border-radius: 25rpx !important;
   text-align: center;
+  background-color: #4587FF;
 }

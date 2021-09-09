@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/me/me",
-    "pages/proxyLogin/proxyLogin"
+    "pages/proxyLogin/proxyLogin",
+    "pages/questionList/questionList"
   ],
   "window": {
     "backgroundTextStyle": "light",

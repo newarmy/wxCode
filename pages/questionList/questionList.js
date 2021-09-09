@@ -1,27 +1,27 @@
-// pages/proxyLogin/proxyLogin.js
+// pages/questionList/questionList.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     windowH: 1334,
+     list:  [
+      {
+          "id": 1,
+          "content": "1/1789 年满20周岁，可以初次申请下列哪种准驾车型？",
+          "pic": '//m1.auto.itc.cn/c_fit,w_430,h_240,q_mini/auto/content/20210908/3ba1f694aa3f0142b79f42376019969e.jpg',
+          "answer": "中型客车"
+      }
+  ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let k = this;
-    wx.getSystemInfoAsync({
-      success (res) {
-       k.setData({
-         windowH: res.windowHeight
-       });
-        
-       
-      }
-    })
+      let list = options.list;
+      list = JSON.parse(list);
+      this.setData({list: list});
   },
 
   /**
