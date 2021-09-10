@@ -1,0 +1,5 @@
+  <view  class="layer-area">
+     <view class="title-area">生成授权次数</view>
+     <input class="code-input" value="{{newActiveCode}}" bindtap="setNewActiveCode" placeholder="输入激活码" />
+     <button class="create-code-btn" bindtap="addNumLogic">添加</button>
+   </view>

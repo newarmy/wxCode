@@ -1,0 +1,46 @@
+.layer-area{
+  box-sizing: border-box;
+  width: 750rpx;
+  padding-top: 100rpx;
+  background-color: #fff;
+}
+.title-area, .last-num{
+  text-align: center;
+  line-height: 80rpx;
+  margin-bottom: 30rpx;
+}
+.form-item{
+  width: 500rpx;
+  height: 110rpx;
+  border-bottom: 2rpx solid #ccc;
+  margin:0 auto 30rpx;
+  display: flex;
+  justify-content: center;
+}
+.form-item{
+  border-bottom: none;
+}
+.input-item{
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 10rpx 30rpx;
+  font-size: 32rpx;
+  color:#333;
+  background-color:#fff !important;
+  border: 1rpx solid #ccc;
+  border-radius: 30rpx;
+}
+.submit-item{
+  width: 300rpx !important;
+  height: 80rpx !important;
+  background: #4587FF !important;
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: normal !important;
+  font-size: 36rpx;
+  color:#fff;
+}

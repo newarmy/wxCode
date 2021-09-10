@@ -7,15 +7,7 @@
   color: #333;
   font-size: 36rpx;
 }
-.layer-area{
-  z-index: 100;
-  box-sizing: border-box;
-  width: 750rpx;
-  position: absolute;
-  left:0;
-  top: 0;
-  background-color: #fff;
-}
+
 .form-item{
   width: 500rpx;
   height: 110rpx;

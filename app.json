@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/me/me",
     "pages/proxyLogin/proxyLogin",
-    "pages/questionList/questionList"
+    "pages/questionList/questionList",
+    "pages/genAccreditNum/genAccreditNum",
+    "pages/createProxyAccount/createProxyAccount"
   ],
   "window": {
     "backgroundTextStyle": "light",

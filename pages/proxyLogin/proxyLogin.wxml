@@ -1,43 +1,28 @@
 <!--pages/proxyLogin/proxyLogin.wxml-->
 <view class="">
-   <view class="form-area" style="height: {{windowH}}px">
+   <view wx:if="{{!loginResult.id}}" class="form-area" style="height: {{windowH}}px">
     <view class="title-area">代理登录</view>
      <view class="form-item">
-       <input type="text" placeholder="请输入用户名" class="input-item"/>
+       <input type="text" bindblur="setProxyName" value="{{proxyName}}" placeholder="请输入用户名" class="input-item"/>
      </view>
      <view class="form-item">
-       <input type="text" password="true" placeholder="请输入密码" class="input-item"/>
+       <input type="text" bindblur="setProxyPwd" value="{{proxyPwd}}" password="true" placeholder="请输入密码" class="input-item"/>
      </view>
      <view class="form-item">
-       <button class="submit-item">登录</button>
+       <button class="submit-item" bindtap="submitLogic">登录</button>
      </view>
    </view>
 
-   <view class="create-code-area" style="height: {{windowH}}px; display: none;">
+   <view wx:if="{{loginResult.id}}" class="create-code-area" style="height: {{windowH}}px;">
      <view class="title-area">生成授权码</view>
-     <view class="last-num">剩余授权次数： 1000</view>
-     <input class="code-input" placeholder="输入激活次数" />
-     <button class="create-code-btn">生成</button>
-
-     <button class="num-btn">添加授权次数</button>
-     <button class="num-btn">创建代理账户</button>
-   </view>
-
-   <view class="layer-area" style="height: {{windowH}}px">
-     <view class="title-area">生成授权次数</view>
-     <input class="code-input" placeholder="输入激活码" />
-     <button class="create-code-btn">添加</button>
-   </view>
-   <view class="layer-area" style="height: {{windowH}}px; display: none;">
-    <view class="title-area">创建代理账户</view>
-     <view class="form-item">
-       <input type="text" placeholder="请输入用户名" class="input-item"/>
+     <view class="last-num">剩余授权次数： {{loginResult.authCount}}</view>
+     <input class="code-input" placeholder="输入激活次数"   value="{{createCodeNum}}" bindblur="setCodeNum"/>
+     <button class="create-code-btn" bindtap="createCodeFunc">生成</button>
+     <view wx:if="{{acitveCode}}" class="set-code-box">
+        <text>{{acitveCode}}</text>
+        <button bindtap="copy">复制</button>
      </view>
-     <view class="form-item">
-       <input type="text" password="true" placeholder="请输入密码" class="input-item"/>
-     </view>
-     <view class="form-item">
-       <button class="submit-item">创建</button>
-     </view>
+     <button class="num-btn" wx:if="{{loginResult.role === 1}}" bindtap="showAddAccreditNumPage">添加授权次数</button>
+     <button class="num-btn" wx:if="{{loginResult.role === 0}}" bindtap="showCreateAccountPage">创建代理账户</button>
    </view>
 </view>

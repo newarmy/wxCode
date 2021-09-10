@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -20,6 +21,18 @@
         {
           "name": "pages/questionList/questionList",
           "pathName": "pages/questionList/questionList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/genAccreditNum/genAccreditNum",
+          "pathName": "pages/genAccreditNum/genAccreditNum",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/createProxyAccount/createProxyAccount",
+          "pathName": "pages/createProxyAccount/createProxyAccount",
           "query": "",
           "scene": null
         }

@@ -10,7 +10,7 @@ module.exports = function (opt) {
          if(json.statusCode === 200) {
            resolve(json.data);
          } else {
-           reject(json.data.message);
+           reject(json.data.msg);
          }
          
        },

@@ -1,4 +1,7 @@
 // pages/proxyLogin/proxyLogin.js
+let loginLogic = require('./logic/loginLogic');
+let logicResultLogic = require('./logic/logicResultLogic');
+
 Page({
 
   /**
@@ -6,8 +9,50 @@ Page({
    */
   data: {
      windowH: 1334,
+     proxyName: '',
+     proxyPwd: '',
+     loginResult: [],
+     createCodeNum: '',
+     acitveCode: ''
   },
-
+  setCodeNum(e) {
+    logicResultLogic.setCodeNum(e, this);
+  },
+  setProxyPwd(e) {
+     loginLogic.setProxyPwd(e, this);
+  },
+  setProxyName(e) {
+     loginLogic.setProxyName(e, this);
+  },
+ 
+  submitLogic(e) {
+     loginLogic.submitLogic(e, this);
+  },
+  createCodeFunc(e) {
+    logicResultLogic.createCodeLogic(e, this);
+  },
+  copy() {
+    wx.setClipboardData({
+      data: this.acitveCode,
+      success (res) {
+        wx.getClipboardData({
+          success (res) {
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
+  },
+  showAddAccreditNumPage(e) {
+    wx.navigateTo({
+      url: '/pages/genAccreditNum/genAccreditNum',
+    })
+  },
+  showCreateAccountPage(e) {
+     wx.navigateTo({
+       url: '/pages/createProxyAccount/createProxyAccount',
+     })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
