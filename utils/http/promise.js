@@ -10,12 +10,14 @@ module.exports = function (opt) {
          if(json.statusCode === 200) {
            resolve(json.data);
          } else {
-           reject(json.data.msg);
+           let err = new Error(json.data.msg);
+           reject(err);
          }
          
        },
        fail: function () {
-         reject('网络错误')
+        let err = new Error('网络错误');
+         reject(err)
        }
      })
   });

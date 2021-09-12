@@ -1,6 +1,7 @@
 // pages/me/me.js
 let constant = require('../../utils/http/constants');
 let sesstion = require('../../utils/http/session');
+let getUserInfo = require('./logic/getUserInfo');
 Page({
 
   /**
@@ -8,26 +9,34 @@ Page({
    */
   data: {
      num: 0,
-     openid: null,
+     openId: null,
      userInfo: {},
+     activeCode: ''
      
   },
+  setActiveCode(e) {
+     this.setData({activeCode: e.detail.value});
+  },
+  useActiveCodeFunc(e) {
+    getUserInfo.useActiveCodeFunc(e, this);
+  },
   getUserProfile(e){
+    let k = this;
     wx.getUserProfile({
       desc: '用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        console.log(res);
-        this.setData({
-          userInfo: res.userInfo
-        });
        let userStr = JSON.stringify(res.userInfo);
        sesstion.set(constants.WX_USERINFO, userStr);
        let openId = sesstion.get(constants.WX_OPENID);
        if(openId) {
-         this.setData({
-           openid: openId
+         k.setData({
+           openid: openId,
+           userInfo: res.userInfo
+         }, function() {
+          getUserInfo.getUseNum(k);
          })
        }
+       
       }
     })
   },
@@ -91,9 +100,21 @@ Page({
 
   },
   onTabItemTap(item) {
+    let k = this;
     // tab 点击时执行
-    if('pages/me/me' === item.pagePath) {
+    //if('pages/me/me' === item.pagePath) {
+      let openId = sesstion.get(constant.WX_OPENID);
+      let userStr = sesstion.get(constant.WX_USERINFO);
+      if(openId && userStr) {
+        this.setData({
+          openId: openId,
+          userInfo: JSON.parse(userStr)
+        }, function() {
+          getUserInfo.getUseNum(k);
+        });
+        return;
+      }
       this.getUserProfile();
-    }
+    //}
   },
 })

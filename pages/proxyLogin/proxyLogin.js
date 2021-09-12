@@ -1,7 +1,8 @@
 // pages/proxyLogin/proxyLogin.js
 let loginLogic = require('./logic/loginLogic');
 let logicResultLogic = require('./logic/logicResultLogic');
-
+let constant = require('../../utils/http/constants');
+let sesstion = require('../../utils/http/session');
 Page({
 
   /**
@@ -13,7 +14,8 @@ Page({
      proxyPwd: '',
      loginResult: [],
      createCodeNum: '',
-     acitveCode: ''
+     acitveCode: '',
+     openId: null
   },
   setCodeNum(e) {
     logicResultLogic.setCodeNum(e, this);
@@ -32,8 +34,9 @@ Page({
     logicResultLogic.createCodeLogic(e, this);
   },
   copy() {
+    let k = this;
     wx.setClipboardData({
-      data: this.acitveCode,
+      data: k.data.acitveCode,
       success (res) {
         wx.getClipboardData({
           success (res) {
@@ -45,7 +48,8 @@ Page({
   },
   showAddAccreditNumPage(e) {
     wx.navigateTo({
-      url: '/pages/genAccreditNum/genAccreditNum',
+     loginResult: [],
+     url: '/pages/genAccreditNum/genAccreditNum?proxyId='+this.data.loginResult.id,
     })
   },
   showCreateAccountPage(e) {
@@ -58,6 +62,12 @@ Page({
    */
   onLoad: function (options) {
     let k = this;
+    let openId = sesstion.get(constant.WX_OPENID);
+    if(openId) {
+      this.setData({
+        openId: openId,
+      });
+    }
     wx.getSystemInfoAsync({
       success (res) {
        k.setData({

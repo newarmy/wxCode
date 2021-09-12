@@ -1,5 +1,7 @@
 // pages/createProxyAccount/createProxyAccount.js
 let loginLogic = require('./logic/loginLogic');
+let constant = require('../../utils/http/constants');
+let sesstion = require('../../utils/http/session');
 Page({
 
   /**
@@ -8,6 +10,7 @@ Page({
   data: {
     proxyName: '',
     proxyPwd: '',
+    openId: null,
   },
   setProxyPwd(e) {
     loginLogic.setProxyPwd(e, this);
@@ -23,7 +26,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let openId = sesstion.get(constant.WX_OPENID);
+    if(openId) {
+      this.setData({
+        openId: openId,
+      });
+    }
   },
 
   /**

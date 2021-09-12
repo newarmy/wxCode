@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
  <view class="login-box">
-  <button wx:if="{{!openid}}" bindtap="getUserProfile" class="login-btn">登录</button>
+  <button wx:if="{{!openId}}" bindtap="getUserProfile" class="login-btn">登录</button>
   <navigator wx:else url="" class="login-success-box">
     <image src="{{userInfo.avatarUrl}}" class="user-image"/>
   </navigator>

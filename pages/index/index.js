@@ -1,8 +1,9 @@
 
 // 获取应用实例
-const app = getApp()
+//const app = getApp()
 let constant = require('../../utils/http/constants');
 let sesstion = require('../../utils/http/session');
+let util = require('../../utils/util');
 let promiseFunc = require('../../utils/http/promise');
 const qiniuUploader = require("../../utils/sdk/qiniuUploader");
 // index.js
@@ -37,38 +38,41 @@ function initQiniu() {
 
 Page({
   data: {
-    openid: null,
+    openId: null,
     userInfo: {},
     imageObject: []
   },
   
   onLoad() {
-    
+    let openId = sesstion.get(constant.WX_OPENID);
+    let userStr = sesstion.get(constant.WX_USERINFO);
+    if(openId && userStr) {
+      this.setData({
+        openId: openId,
+        userInfo: JSON.parse(userStr)
+      });
+    }
   },
   getUserProfile(e) {
     let openId = sesstion.get(constant.WX_OPENID);
     let userStr = sesstion.get(constant.WX_USERINFO);
     if(openId && userStr) {
       this.setData({
-        openid: openId,
+        openId: openId,
         userInfo: JSON.parse(userStr)
       });
-      //return;
+      return;
     }
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+     wx.getUserProfile({
+      desc: '登录后使用功能', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        console.log(res);
-        this.setData({
-          userInfo: res.userInfo
-        });
        let userStr = JSON.stringify(res.userInfo);
-       sesstion.set(constants.WX_USERINFO, userStr);
-       let openId = sesstion.get(constants.WX_OPENID);
+       sesstion.set(constant.WX_USERINFO, userStr);
+       let openId = sesstion.get(constant.WX_OPENID);
        if(openId) {
          this.setData({
-           openid: openId
+           openId: openId,
+           userInfo: res.userInfo
          })
        }
       }
@@ -76,10 +80,24 @@ Page({
   },
   uploadFromAlbum() {
     let k = this;
+    if(!k.data.openId) {
+      wx.showToast({
+        title: '请先登录后再使用服务',
+        icon: "none"
+      })
+      return;
+    }
     didPressChooesImage(k, 'album');
   },
   uploadFromCamera() {
     let k = this;
+    if(!k.data.openId) {
+      wx.showToast({
+        title: '请先登录后再使用服务',
+        icon: "none"
+      })
+      return;
+    }
     didPressChooesImage(k, 'camera');
   }
 })
@@ -107,13 +125,13 @@ function didPressChooesImage(that, imageFromType) {
           var filePath = res.tempFilePaths[0];
           // wx.chooseImage 目前微信官方尚未开放获取原图片名功能(2020.4.22)
           // 向七牛云上传
-          qiniuUploader.upload(filePath, (res) => {
+          qiniuUploader.upload(filePath, that.data.openId, (res) => {
               that.setData({
                   'imageObject': res
               });
               requestQuestionData(that, timestamp);
-              console.log('提示: wx.chooseImage 目前微信官方尚未开放获取原图片名功能(2020.4.22)');
-              console.log('file url is: ' + res.fileURL);
+              //console.log('提示: wx.chooseImage 目前微信官方尚未开放获取原图片名功能(2020.4.22)');
+              //console.log('file url is: ' + res.fileURL);
           }, (error) => {
               console.error('error: ' + JSON.stringify(error));
           },
@@ -143,11 +161,9 @@ function didPressChooesImage(that, imageFromType) {
 function requestQuestionData(that, imageKey) {
   promiseFunc({
      url: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/analysis',
-     header: {
-      'X-WX-OPENID': 123456
-     },
+     header: util.setRequestHeader(that.data.openId),
      data: {
-       openId:"123456",
+       openId: that.data.openId,
        picId: imageKey
      },
      method: 'POST'

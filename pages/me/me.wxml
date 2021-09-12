@@ -1,6 +1,6 @@
 <!--pages/me/me.wxml-->
 <view class="user-area">
-   <view class="user-row"  wx:if="{{!openid}}">
+   <view class="user-row"  wx:if="{{!openId}}">
       <button bindtap="getUserProfile" class="login-btn">登录</button>
    </view>
  <view wx:else class="user-row">
@@ -8,10 +8,10 @@
     <text class="user-name">{{userInfo.nickName}}</text>
  </view>
  
-  <text class="active-code">激活码次数{{num}}</text>
+  <text class="active-code">激活码次数：{{num}}</text>
 </view>
 <view class="content-area">
-<input class="active-input"   placeholder="激活码" />
-<button class="use-active-code-btn">使用激活码</button>
+<input class="active-input" value="{{activeCode}}" bindblur="setActiveCode"  placeholder="激活码" />
+<button class="use-active-code-btn" bindtap="useActiveCodeFunc">使用激活码</button>
 <button class="contact-btn" open-type="contact" bindcontact="handleContact">联系客服</button>
 </view>

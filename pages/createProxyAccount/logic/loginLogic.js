@@ -1,5 +1,6 @@
 let promiseFunc = require('../../../utils/http/promise');
 let urlConfig = require('../../../utils/urlConfig');
+let util = require('../../../utils/util');
 module.exports = {
    setProxyName: function (e, that) {
       that.setData({ proxyName: e.detail.value });
@@ -10,14 +11,14 @@ module.exports = {
    createProxyAccountLogic(e, that) {
      let n = that.data.proxyName;
      let p = that.data.proxyPwd;
-     if(checkEmptyString(n)) {
+     if(util.checkEmptyString(n)) {
        wx.showToast({
          title: '请输入正确的用户名',
          icon: 'none'
        });
        return ;
      }
-     if(checkEmptyString(p)) {
+     if(util.checkEmptyString(p)) {
       wx.showToast({
         title: '请输入正确的密码',
         icon: 'none'
@@ -32,25 +33,16 @@ module.exports = {
          password: p
        },
        method: 'POST',
-       header: {
-        'X-WX-OPENID': 123456
-       }
+       header: util.setRequestHeader(that.data.openId)
      }).then(function(json) {
         wx.showToast({
           title: json.msg,
         })
-     }).catch(function(msg) {
+     }).catch(function(err) {
            wx.showToast({
-             title: msg,
+             title: err.message,
            })
      })
    
    }
 };
-
-function checkEmptyString(content) {
-    if (content === undefined || content === null || (typeof content === 'string' && content.length === 0)) {
-        return true;
-    }
-    return false;
- }

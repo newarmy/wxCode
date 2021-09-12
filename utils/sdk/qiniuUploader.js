@@ -1,3 +1,4 @@
+let util = require('../util');
 (function () {
     // 请参考demo的index.js中的initQiniu()方法，若在使用处对options进行了赋值，则此处config不需要赋默认值。init(options) 即updateConfigWithOptions(options)，会对config进行赋值
     var config = {
@@ -49,7 +50,7 @@
     }
 
     // 正式上传的前置方法，做预处理，应用七牛云配置
-    function upload(filePath, success, fail, options, progress, cancelTask) {
+    function upload(filePath, openId, success, fail, options, progress, cancelTask) {
         if (null == filePath) {
             console.error('qiniu uploader need filePath to upload');
             return;
@@ -60,7 +61,7 @@
         if (config.qiniuUploadToken) {
             doUpload(filePath, success, fail, options, progress, cancelTask);
         } else if (config.qiniuUploadTokenURL) {
-            getQiniuToken(function () {
+            getQiniuToken(openId, function () {
                 doUpload(filePath, success, fail, options, progress, cancelTask);
             });
         } else if (config.qiniuUploadTokenFunction) {
@@ -144,12 +145,10 @@
     }
 
     // 获取七牛云uptoken, url为后端服务器获取七牛云uptoken接口
-    function getQiniuToken(callback) {
+    function getQiniuToken(openId, callback) {
         wx.request({
             url: config.qiniuUploadTokenURL,
-            header: {
-                'X-WX-OPENID': 123456
-            },
+            header: util.setRequestHeader(openId),
             success: function (res) {
                 console.log(res.data);
                 var token = res.data.data;

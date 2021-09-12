@@ -1,5 +1,6 @@
 let promiseFunc = require('../../../utils/http/promise');
 let urlConfig = require('../../../utils/urlConfig');
+let util = require('../../../utils/util');
 module.exports = {
    setCodeNum(e, that) {
     that.setData({ createCodeNum: e.detail.value });
@@ -7,37 +8,37 @@ module.exports = {
    createCodeLogic(e, that) {
      let num = that.data.createCodeNum;
 
-     if(checkEmptyString(num)) {
+     if(util.checkEmptyString(num)) {
        wx.showToast({
          title: '请输入授权次数',
          icon: 'none'
        });
        return ;
      }
-
+     let url =  urlConfig.createActiveCodeUrl.replace('{{proxyId}}', that.data.loginResult.id);
      promiseFunc({
-       url: urlConfig.createActiveCodeUrl+that.data.loginResult.id,
+       url:url,
        data: num,
        method: 'POST',
-       header: {
-        'X-WX-OPENID': 123456,
-        'content-type': 'text/plain'
-       }
+       header: util.setRequestHeader(that.data.openId)
      }).then(function(json) {
         let activeCode = json.data;
-        that.setData({acitveCode: activeCode});
-     }).catch(function(msg) {
+        if(activeCode) {
+          that.setData({acitveCode: activeCode});
+        } else {
+          wx.showToast({
+            title: json.msg,
+            icon: 'none'
+          })
+        }
+        
+     }).catch(function(err) {
+           //console.log(err);
            wx.showToast({
-             title: msg,
+             title: err.message,
+             icon: 'none'
            })
      })
    
    }
 };
-
-function checkEmptyString(content) {
-    if (content === undefined || content === null || (typeof content === 'string' && content.length === 0)) {
-        return true;
-    }
-    return false;
- }

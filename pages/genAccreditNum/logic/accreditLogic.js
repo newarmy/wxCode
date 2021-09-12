@@ -1,5 +1,6 @@
 let promiseFunc = require('../../../utils/http/promise');
 let urlConfig = require('../../../utils/urlConfig');
+let util = require('../../../utils/util');
 module.exports = {
   setNewActiveCode(e, that) {
     that.setData({ newActiveCode: e.detail.value });
@@ -7,38 +8,32 @@ module.exports = {
    addNumLogic(e, that) {
      let newActiveCode = that.data.newActiveCode;
 
-     if(checkEmptyString(newActiveCode)) {
+     if(util.checkEmptyString(newActiveCode)) {
        wx.showToast({
-         title: '请输入激活码',
+         title: '请输入授权码',
          icon: 'none'
        });
        return ;
      }
-
+     let url = urlConfig.proxyActiveCodeUrl.replace('{{proxyId}}', that.data.proxyId);
      promiseFunc({
-       url: urlConfig.activeCodeUrl,
+       url: url,
        data: newActiveCode,
        method: 'POST',
-       header: {
-        'X-WX-OPENID': 123456,
-        'content-type': 'text/plain'
-       }
+       header: util.setRequestHeader(that.data.openId)
      }).then(function(json) {
         wx.showToast({
           title: json.msg,
+          icon: 'none'
         })
-     }).catch(function(msg) {
+     }).catch(function(err) {
            wx.showToast({
-             title: msg,
+             title: err.message,
+             icon: 'none'
            })
      })
    
    }
 };
 
-function checkEmptyString(content) {
-    if (content === undefined || content === null || (typeof content === 'string' && content.length === 0)) {
-        return true;
-    }
-    return false;
- }
+

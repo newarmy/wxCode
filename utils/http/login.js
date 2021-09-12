@@ -68,21 +68,21 @@ let requestLogin = function (options) {
   //  请求服务器登录地址，获得会话信息
   wx.request({
     url: options.loginUrl,
-    header: header,
+    //header: header,
     method: options.method || 'GET',
     data: reqData,
     success: function (result) {
       var data = result.data;
       //----------------------根据返回数据的格式来修改代码--------------------
       // success handler logic
-      if (data && data.status === 200) {
-        var res = data.data;
-        if (res.userId) {
-          session.set(constants.WX_OPENID, res.userId);
+      if (data && data.code === 200) {
+        var openId = data.data;
+        if (openId) {
+          session.set(constants.WX_OPENID, openId);
           options.success(res.userId);
         } else {
           // 搜狐服务登录错误
-          var errorMessage = '登录失败(' + data.error + ')：' + (data.message || '未知错误');
+          var errorMessage = '登录失败(' + data.error + ')：' + (data.msg || '未知错误');
           var noSessionError = new LoginError('wx_login_server_error', errorMessage);
           options.fail(noSessionError);
         }
@@ -111,7 +111,7 @@ let configLoginHeader = function (options) {
 // 登录请求参数
 let setRequestData = function (options) {
   return {
-    code: options.code
+    jscode: options.code
   };
 }
 
