@@ -51,13 +51,15 @@
 .active-input{
   box-sizing: border-box;
   display: block;
-  width: 750rpx;
+  width: 690rpx;
   padding: 0 40rpx;
   line-height: 80rpx;
   height: 80rpx;
   font-size: 36rpx;
   color: #333;
-  margin-bottom: 20rpx;
+  margin: 10rpx auto 30rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 30rpx;
 }
 .use-active-code-btn, .contact-btn{
    padding: 0;
