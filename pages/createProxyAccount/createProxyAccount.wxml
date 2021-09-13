@@ -4,7 +4,7 @@
        <input type="text" value="{{proxyName}}" bindblur="setProxyName" placeholder="请输入用户名" class="input-item"/>
      </view>
      <view class="form-item">
-       <input type="text" password="true" value="proxyPwd" bindblur="setProxyPwd" placeholder="请输入密码" class="input-item"/>
+       <input type="text" password="true" value="{{proxyPwd}}" bindblur="setProxyPwd" placeholder="请输入密码" class="input-item"/>
      </view>
      <view class="form-item">
        <button class="submit-item" bindtap="createProxyAccountLogic">创建</button>

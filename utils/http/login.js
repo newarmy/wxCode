@@ -79,7 +79,6 @@ let requestLogin = function (options) {
         var openId = data.data;
         if (openId) {
           session.set(constants.WX_OPENID, openId);
-          options.success(res.userId);
         } else {
           // 搜狐服务登录错误
           var errorMessage = '登录失败(' + data.error + ')：' + (data.msg || '未知错误');

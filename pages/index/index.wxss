@@ -42,12 +42,16 @@ button:not([size='mini']){
   margin: 0 auto 200rpx;
 }
 .upload-btn-from-album, .upload-btn-from-camera{
-  height: 300rpx !important;
+  height: 200rpx !important;
   width: 300rpx !important;
-  line-height: 300rpx;
+  line-height: 200rpx;
+  background: url(//m1.auto.itc.cn/auto/content/20210913/b60b26c5e25d2499dbd2f697d5adc5d9.png) no-repeat;
+  background-size: 300rpx 200rpx;
+  text-indent: 10000px;
 }
 .upload-btn-from-camera{
   margin-left: 90rpx;
+  background-image: url(//m4.auto.itc.cn/auto/content/20210913/56e0d30c9b9071d0a6f23413424e2d29.png);
 }
 
 .service-box{

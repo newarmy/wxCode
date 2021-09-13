@@ -26,8 +26,8 @@ Page({
       desc: '用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
        let userStr = JSON.stringify(res.userInfo);
-       sesstion.set(constants.WX_USERINFO, userStr);
-       let openId = sesstion.get(constants.WX_OPENID);
+       sesstion.set(constant.WX_USERINFO, userStr);
+       let openId = sesstion.get(constant.WX_OPENID);
        if(openId) {
          k.setData({
            openid: openId,
