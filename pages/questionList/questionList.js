@@ -1,27 +1,26 @@
 // pages/questionList/questionList.js
+let util = require('../../utils/util');
+let promiseFunc = require('../../utils/http/promise');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     list:  [
-      {
-          "id": 1,
-          "content": "1/1789 年满20周岁，可以初次申请下列哪种准驾车型？",
-          "pic": '//m1.auto.itc.cn/c_fit,w_430,h_240,q_mini/auto/content/20210908/3ba1f694aa3f0142b79f42376019969e.jpg',
-          "answer": "中型客车"
-      }
-  ]
+     list:  [],
+     isLoadData: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      let list = options.list;
-      list = JSON.parse(list);
-      this.setData({list: list});
+      let key = options.key;
+      let openId = options.openId;
+      requestQuestionData(this, key, openId);
+      wx.showLoading({
+        title: '图片识别中...',
+      })
   },
 
   /**
@@ -73,3 +72,35 @@ Page({
 
   }
 })
+
+function requestQuestionData(that, imageKey, openId) {
+    promiseFunc({
+       url: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/analysis',
+       header: util.setRequestHeader(that.data.openId),
+       data: {
+         openId: openId,
+         picId: imageKey
+       },
+       method: 'POST'
+    }).then(function(json) {
+        if(json.data) {
+           handlerAnalysis(that, formatData(json.data));
+        } else {
+          handlerAnalysis(that, []);
+        }
+    });
+  }
+  function handlerAnalysis(that, data) {
+     that.setData({list: data, isLoadData: true});
+     wx.hideLoading({
+       success: (res) => {},
+     })
+  } 
+  
+  function formatData(data) {
+    data.forEach(function(item) {
+      item.content = item.content.replace(/(\n+)|(\r+)|(\n+\r+)|(\u000A|\u000D|\u2028|\u2029)+/g,"-");
+      item.content = item.content.split('-'); 
+    });
+    return data;
+  }

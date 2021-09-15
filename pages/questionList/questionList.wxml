@@ -1,10 +1,17 @@
 <!--pages/questionList/questionList.wxml-->
 <view class="question-header">为您识别的题目</view>
 <view class="question-list">
+   <block wx:if="{{list.length > 0}}">
    <view class="question-item" wx:for="{{list}}" wx:key="{{item.id}}"> 
       <view class="question-ask">
-        <text class="first">【问题】:</text>
-        {{item.content}}
+        <view wx:for="{{item.content}}">
+          <block wx:if="{{index === 0}}">
+            <view >{{item}}</view>
+          </block> 
+          <block wx:else>
+            <view class="options">{{item}}</view>
+          </block>
+        </view>
       </view>
       <view class="question-answer">
         <text class="first">【答案】:</text>
@@ -12,5 +19,9 @@
       </view>
       <image wx:if="{{item.pic}}" mode="widthFix" src="{{item.pic}}" class="question-image"></image>
    </view>
+  </block>
+  <block wx:else>
+    <view class="hint {{isLoadData ? 'show' : ''}}">对不起， 没有识别出问题！</view>
+  </block>
 </view>
 

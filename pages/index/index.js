@@ -159,26 +159,12 @@ function didPressChooesImage(that, imageFromType) {
 }
 
 function requestQuestionData(that, imageKey) {
-  promiseFunc({
-     url: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/analysis',
-     header: util.setRequestHeader(that.data.openId),
-     data: {
-       openId: that.data.openId,
-       picId: imageKey
-     },
-     method: 'POST'
-  }).then(function(json) {
-      if(json.data) {
-         handlerAnalysis(that, json.data);
-      }
+
+  wx.hideLoading({
+    success: (res) => {},
+  })
+  wx.navigateTo({
+    url: '/pages/questionList/questionList?key='+imageKey+'&openId='+that.data.openId,
   });
+  
 }
-function handlerAnalysis(that, data) {
-   let dataStr = JSON.stringify(data);
-   wx.hideLoading({
-     success: (res) => {},
-   })
-   wx.navigateTo({
-     url: '/pages/questionList/questionList?list='+dataStr,
-   });
-} 

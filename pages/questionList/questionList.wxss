@@ -29,6 +29,11 @@
   font-size: 36rpx;
   margin-bottom: 20rpx;
 }
+.options{
+  font-size: 32rpx;
+  margin-top: 20rpx;
+  font-weight: normal;
+}
 .question-answer{
   font-size: 32rpx;
   margin-bottom: 20rpx;
@@ -36,4 +41,13 @@
 .question-image{
   width: 100%;
   height: auto;
+}
+.hint{
+  padding: 30rpx;
+  text-align: center;
+  color: red;
+  display: none;
+}
+.show{
+  display: block;
 }
