@@ -2,9 +2,9 @@
 <view class="question-header">为您识别的题目</view>
 <view class="question-list">
    <block wx:if="{{list.length > 0}}">
-   <view class="question-item" wx:for="{{list}}" wx:key="{{item.id}}"> 
+   <view class="question-item" wx:for="{{list}}" wx:key="id"> 
       <view class="question-ask">
-        <view wx:for="{{item.content}}">
+        <view wx:for="{{item.content}}" wx:key="*this">
           <block wx:if="{{index === 0}}">
             <view >{{item}}</view>
           </block> 
