@@ -5,7 +5,9 @@
     "pages/proxyLogin/proxyLogin",
     "pages/questionList/questionList",
     "pages/genAccreditNum/genAccreditNum",
-    "pages/createProxyAccount/createProxyAccount"
+    "pages/createProxyAccount/createProxyAccount",
+    "pages/camera/camera",
+    "pages/addAdvertising/addAdvertising"
   ],
   "window": {
     "backgroundTextStyle": "light",

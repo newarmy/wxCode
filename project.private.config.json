@@ -35,6 +35,18 @@
           "pathName": "pages/createProxyAccount/createProxyAccount",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/camera/camera",
+          "pathName": "pages/camera/camera",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/addAdvertising/addAdvertising",
+          "pathName": "pages/addAdvertising/addAdvertising",
+          "query": "",
+          "scene": null
         }
       ]
     }

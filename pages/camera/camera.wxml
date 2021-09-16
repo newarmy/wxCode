@@ -1,0 +1,12 @@
+<!--pages/camera/camera.wxml-->
+<view class="camera-page" style="height: {{wHeight}}px">
+
+  <camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 500rpx;">
+    <cover-view class="cover-view"></cover-view>
+
+  </camera>
+  <view class="hint">请将题目内容放置在白色框内拍摄</view>
+  <button type="primary" class="take-photo-btn" bindtap="takePhoto">拍照</button>
+  <view class="take-photo-hint">拍照要求</view>
+  <image src="../../icon/hint.jpg" class="take-hint-img"></image>
+</view>

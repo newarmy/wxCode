@@ -1,0 +1,54 @@
+/* pages/addAdvertising/addAdvertising.wxss */
+/* pages/genAccreditNum/genAccreditNum.wxss */
+.layer-area{
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 690rpx;
+  padding-top: 100rpx;
+  background-color: #fff;
+}
+.title-area, .last-num{
+  text-align: center;
+  line-height: 80rpx;
+  margin-bottom: 30rpx;
+}
+.textarea-style{
+  box-sizing: border-box;
+  display: block;
+  width: 690rpx;
+  height: 300rpx;
+  line-height: 60rpx;
+  padding: 10rpx 30rpx;
+  font-size: 32rpx;
+  color:#333;
+  background-color:#fff !important;
+  border: 1rpx solid #ccc;
+  border-radius: 30rpx;
+  margin: 0 auto 10rpx;
+}
+.page-section{
+  width: 690rpx;
+  margin: 20rpx auto ;
+  font-size: 36rpx;
+}
+.page-section-title{
+  margin-bottom: 20rpx;
+}
+.checkbox{
+  margin-right: 20rpx;
+}
+
+.create-code-btn{
+  width: 300rpx !important;
+  height: 80rpx !important;
+  background: #4587FF !important;
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: normal !important;
+  font-size: 36rpx;
+  color:#fff;
+  margin: 30rpx auto 200rpx !important;
+}

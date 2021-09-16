@@ -15,7 +15,8 @@ Page({
      loginResult: [],
      createCodeNum: '',
      acitveCode: '',
-     openId: null
+     openId: null,
+     advertising: '广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告'
   },
   setCodeNum(e) {
     logicResultLogic.setCodeNum(e, this);
@@ -56,6 +57,11 @@ Page({
      wx.navigateTo({
        url: '/pages/createProxyAccount/createProxyAccount',
      })
+  },
+  showBroadcastPage(e) {
+    wx.navigateTo({
+      url: '/pages/addAdvertising/addAdvertising?openId=' + this.data.openId,
+    })
   },
   /**
    * 生命周期函数--监听页面加载

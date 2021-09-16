@@ -14,11 +14,36 @@ button:not([size='mini']){
 }
 .login-box{
   display:flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 690rpx;
   height: 100rpx;
   margin: 0 auto 200rpx;
 }
+.broadcast-icon{
+  width: 100rpx;
+  height: 100rpx;
+  background: url(//m1.auto.itc.cn/auto/content/20210916/9395af90cfa6ec2116da9b1d457b4e4b.png) no-repeat center center;
+  background-size: 56rpx 54rpx;
+}
+.broadcast-box{
+  position: relative;
+  width: 490rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  overflow: hidden;
+}
+.broadcast-box-text{
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 100rpx;
+  font-size: 36rpx;
+  color: red;
+}
+.copy-box{
+  left: 490rpx;
+}
+
 .login-btn, .login-success-box{
   height: 100rpx !important;
   width: 100rpx !important;
@@ -42,22 +67,24 @@ button:not([size='mini']){
   margin: 0 auto 200rpx;
 }
 .upload-btn-from-album, .upload-btn-from-camera{
-  height: 200rpx !important;
-  width: 300rpx !important;
+  height: 266rpx !important;
+  width: 316rpx !important;
   line-height: 200rpx;
-  background: url(//m1.auto.itc.cn/auto/content/20210913/b60b26c5e25d2499dbd2f697d5adc5d9.png) no-repeat;
-  background-size: 300rpx 200rpx;
+  background: url(//m1.auto.itc.cn/auto/content/images2021/image.jpg) no-repeat;
+  background-size: 316rpx 266rpx;
   text-indent: 10000px;
 }
 .upload-btn-from-camera{
   margin-left: 90rpx;
-  background-image: url(//m4.auto.itc.cn/auto/content/20210913/56e0d30c9b9071d0a6f23413424e2d29.png);
+  background-image: url(//m1.auto.itc.cn/auto/content/images2021/camera.jpg);
 }
 
 .service-box{
+  position: fixed;
+  bottom: 30rpx;
   display:flex;
-  justify-content: center;
-  width: 690rpx;
+  justify-content: flex-end;
+  width: 600rpx;
   line-height: 50rpx;
   font-size: 32rpx;
   color:#fff;

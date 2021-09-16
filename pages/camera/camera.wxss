@@ -1,0 +1,42 @@
+/* pages/camera/camera.wxss */
+.camera-page{
+  background-color: #f3f1f2;
+}
+.cover-view{
+  position: absolute;
+  left: 25rpx;
+  top: 50rpx;
+  width: 700rpx;
+  height: 400rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #fff;
+}
+.hint, .take-photo-hint{
+  box-sizing: border-box;
+  padding: 30rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.take-photo-hint{
+  text-align: left;
+}
+.take-hint-img{
+  width: 750rpx;
+  height: 200rpx;
+}
+
+.take-photo-btn{
+  width: 600rpx !important;
+  height: 80rpx !important;
+  background: #4587FF !important;
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: normal !important;
+  font-size: 36rpx;
+  color:#fff;
+  margin: 30rpx auto 60rpx !important;
+}

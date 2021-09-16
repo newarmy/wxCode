@@ -22,7 +22,15 @@
         <text>{{acitveCode}}</text>
         <button bindtap="copy" class="num-btn copy-btn">复制</button>
      </view>
-     <button class="num-btn" wx:if="{loginResult.role === 0 || loginResult.role === 1}}" bindtap="showAddAccreditNumPage">添加授权次数</button>
+     <button class="num-btn" wx:if="{{ loginResult.role === 1}}" bindtap="showAddAccreditNumPage">添加授权次数</button>
      <button class="num-btn" wx:if="{{loginResult.role === 0}}" bindtap="showCreateAccountPage">创建代理账户</button>
+     <button class="num-btn" wx:if="{{loginResult.role === 0}}" bindtap="showBroadcastPage">创建广告</button>
+     <view class="broadcast-area">
+        <view class="broadcast-title">广告</view>
+        <view class="broadcast-content">
+          {{advertising}}
+          
+        </view>
+     </view>
    </view>
 </view>
