@@ -1,4 +1,7 @@
 // pages/addAdvertising/addAdvertising.js
+let promiseFunc = require('../../utils/http/promise');
+let urlConfig = require('../../utils/urlConfig');
+let util = require('../../utils/util');
 Page({
 
   /**
@@ -6,7 +9,7 @@ Page({
    */
   data: {
     openId: '',
-    position: [],
+    position: '',
     advertising: '',
   },
   checkboxChange(e) {
@@ -28,13 +31,30 @@ Page({
       })
       return;
     }
-    if(position.length <= 0) {
+    if(!position) {
       wx.showToast({
         title: '请选择显示位置',
         icon: 'none'
       })
       return;
     }
+    let url = urlConfig.setLabelUrl.replace('{{labelId}}', position);
+    promiseFunc({
+      url: url,
+      data: content,
+      method: 'POST',
+      header: util.setRequestHeader(k.data.openId)
+    }).then(function(json) {
+       wx.showToast({
+         title: json.msg,
+         icon: 'none'
+       })
+    }).catch(function(err) {
+          wx.showToast({
+            title: err.message,
+            icon: 'none'
+          })
+    })
   },
 
   /**

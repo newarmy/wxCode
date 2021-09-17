@@ -6,14 +6,15 @@
    
       <view class="page-section">
         <view class="page-section-title">要显示的页面</view>
-        <checkbox-group bindchange="checkboxChange">
+        <radio-group bindchange="checkboxChange">
           <label class="checkbox">
-            <checkbox value="1"/>首页
+            <radio value="1" />首页
           </label>
           <label class="checkbox">
-            <checkbox value="2" />代理页面
+            <radio value="2" />代理页面
           </label>
-      </checkbox-group>
+         
+      </radio-group>
      </view>
      <button class="create-code-btn" bindtap="addAdFunc">提交</button>
    </view>

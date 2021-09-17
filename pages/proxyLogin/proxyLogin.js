@@ -3,6 +3,9 @@ let loginLogic = require('./logic/loginLogic');
 let logicResultLogic = require('./logic/logicResultLogic');
 let constant = require('../../utils/http/constants');
 let sesstion = require('../../utils/http/session');
+let util = require('../../utils/util');
+let urlConfig = require('../../utils/urlConfig');
+let promiseFunc = require('../../utils/http/promise');
 Page({
 
   /**
@@ -16,7 +19,7 @@ Page({
      createCodeNum: '',
      acitveCode: '',
      openId: null,
-     advertising: '广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告'
+     advertising: ''
   },
   setCodeNum(e) {
     logicResultLogic.setCodeNum(e, this);
@@ -63,6 +66,29 @@ Page({
       url: '/pages/addAdvertising/addAdvertising?openId=' + this.data.openId,
     })
   },
+  getBroadCastData() {
+    let k = this;
+    let url = urlConfig.getLabelUrl.replace('{{labelId}}', 2);
+   promiseFunc({
+     url: url,
+     method: 'GET',
+     header: util.setRequestHeader(k.data.openId)
+   }).then(function(json) {
+      if(json.code == 200) {
+        k.setData({advertising: json.data});
+      } else {
+       wx.showToast({
+         title: err.msg,
+         icon: 'none'
+       })
+      }
+   }).catch(function(err) {
+         wx.showToast({
+           title: err.message,
+           icon: 'none'
+         })
+   })
+ },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -82,7 +108,8 @@ Page({
         
        
       }
-    })
+    });
+    k.getBroadCastData();
   },
 
   /**

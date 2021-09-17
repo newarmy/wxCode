@@ -4,6 +4,7 @@
 let constant = require('../../utils/http/constants');
 let sesstion = require('../../utils/http/session');
 let util = require('../../utils/util');
+let urlConfig = require('../../utils/urlConfig');
 let promiseFunc = require('../../utils/http/promise');
 
 let qNUpload = require('../../utils/qiniuUpload');
@@ -17,7 +18,7 @@ Page({
     textWidth: '490rpx',
     textWidthPx: 0,
     animationData: null,
-    advertising: '广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告广告'
+    advertising: ''
   },
   
   onLoad() {
@@ -79,7 +80,37 @@ Page({
       url: '/pages/camera/camera?openId='+this.data.openId,
     });
   },
+  getBroadCastData() {
+     let k = this;
+     let url = urlConfig.getLabelUrl.replace('{{labelId}}', 1);
+    promiseFunc({
+      url: url,
+      method: 'GET',
+      header: util.setRequestHeader(k.data.openId|| 'home')
+    }).then(function(json) {
+       if(json.code == 200) {
+         k.setData({advertising: json.data}, function () {
+               k.setBroadCastSize();
+         });
+       } else {
+        wx.showToast({
+          title: err.msg,
+          icon: 'none'
+        })
+       }
+    }).catch(function(err) {
+          wx.showToast({
+            title: err.message,
+            icon: 'none'
+          })
+    })
+  },
   onReady() {
+    let k = this;
+    k.getBroadCastData();
+    
+  },
+  setBroadCastSize() {
     let k = this;
     let rectWidth = 0;
     let textHeight = 0;
@@ -89,7 +120,6 @@ Page({
       k.setWidth(rectWidth, textHeight);
       k.setAnimation();
     }).exec();
-    
   },
   setAnimation() {
     let k = this;
