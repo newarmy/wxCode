@@ -19,7 +19,8 @@ Page({
      createCodeNum: '',
      acitveCode: '',
      openId: null,
-     advertising: ''
+     advertising: '',
+     memory: 0
   },
   setCodeNum(e) {
     logicResultLogic.setCodeNum(e, this);
@@ -29,6 +30,9 @@ Page({
   },
   setProxyName(e) {
      loginLogic.setProxyName(e, this);
+  },
+  setMemory(e) {
+    this.setData({memory: e.detail.value.length});
   },
  
   submitLogic(e) {
@@ -98,6 +102,14 @@ Page({
     if(openId) {
       this.setData({
         openId: openId,
+      });
+    }
+    let pn = sesstion.get('proxyN');
+    let pp = sesstion.get('proxyP');
+    if(pn && pp) {
+      this.setData({
+        proxyName: pn,
+        proxyPwd: pp
       });
     }
     wx.getSystemInfoAsync({

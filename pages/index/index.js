@@ -7,7 +7,7 @@ let util = require('../../utils/util');
 let urlConfig = require('../../utils/urlConfig');
 let promiseFunc = require('../../utils/http/promise');
 
-let qNUpload = require('../../utils/qiniuUpload');
+let qNUpload = require('../../utils/wxUpload');
 
 
 Page({
@@ -22,42 +22,44 @@ Page({
   },
   
   onLoad() {
+    this.setOpenId();
+  },
+  setOpenId() {
     let openId = sesstion.get(constant.WX_OPENID);
-    let userStr = sesstion.get(constant.WX_USERINFO);
-    if(openId && userStr) {
+    if(openId) {
       this.setData({
-        openId: openId,
-        userInfo: JSON.parse(userStr)
+        openId: openId
       });
     }
   },
-  getUserProfile(e) {
-    let openId = sesstion.get(constant.WX_OPENID);
-    let userStr = sesstion.get(constant.WX_USERINFO);
-    if(openId && userStr) {
-      this.setData({
-        openId: openId,
-        userInfo: JSON.parse(userStr)
-      });
-      return;
-    }
-     wx.getUserProfile({
-      desc: '登录后使用功能', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-       let userStr = JSON.stringify(res.userInfo);
-       sesstion.set(constant.WX_USERINFO, userStr);
-       let openId = sesstion.get(constant.WX_OPENID);
-       if(openId) {
-         this.setData({
-           openId: openId,
-           userInfo: res.userInfo
-         })
-       }
-      }
-    })
-  },
+  // getUserProfile(e) {
+  //   let openId = sesstion.get(constant.WX_OPENID);
+  //   let userStr = sesstion.get(constant.WX_USERINFO);
+  //   if(openId && userStr) {
+  //     this.setData({
+  //       openId: openId,
+  //       userInfo: JSON.parse(userStr)
+  //     });
+  //     return;
+  //   }
+  //    wx.getUserProfile({
+  //     desc: '登录后使用功能', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+  //     success: (res) => {
+  //      let userStr = JSON.stringify(res.userInfo);
+  //      sesstion.set(constant.WX_USERINFO, userStr);
+  //      let openId = sesstion.get(constant.WX_OPENID);
+  //      if(openId) {
+  //        this.setData({
+  //          openId: openId,
+  //          userInfo: res.userInfo
+  //        })
+  //      }
+  //     }
+  //   })
+  // },
   uploadFromAlbum() {
     let k = this;
+    this.setOpenId();
     if(!k.data.openId) {
       wx.showToast({
         title: '请先登录后再使用服务',
@@ -69,6 +71,7 @@ Page({
   },
   uploadFromCamera() {
     let k = this;
+    this.setOpenId();
     if(!k.data.openId) {
       wx.showToast({
         title: '请先登录后再使用服务',

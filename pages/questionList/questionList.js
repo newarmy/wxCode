@@ -8,7 +8,8 @@ Page({
    */
   data: {
      list:  [],
-     isLoadData: false
+     isLoadData: false,
+     from: '',
   },
 
   /**
@@ -18,6 +19,13 @@ Page({
       let key = options.key;
       let openId = options.openId;
       requestQuestionData(this, key, openId);
+      let from;
+      if( options.imageFromType === 'camera') {
+        from = '/pages/camera/camera'
+      } else {
+        from = '/pages/index/index'
+      }
+      this.setData({from: from});
       wx.showLoading({
         title: '图片识别中...',
       })

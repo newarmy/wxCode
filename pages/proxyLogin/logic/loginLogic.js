@@ -1,6 +1,7 @@
 let promiseFunc = require('../../../utils/http/promise');
 let urlConfig = require('../../../utils/urlConfig');
 let util = require('../../../utils/util');
+let session = require('../../../utils/http/session');
 module.exports = {
    setProxyName: function (e, that) {
       that.setData({ proxyName: e.detail.value });
@@ -27,7 +28,10 @@ module.exports = {
       });
       return ;
      }
-
+     if(that.data.memory === 1) {
+      session.set('proxyN', n);
+      session.set('proxyP', p);
+     }
      promiseFunc({
        url: urlConfig.proxyLoginUrl,
        data: {

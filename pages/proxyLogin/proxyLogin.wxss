@@ -21,6 +21,10 @@
 .form-item{
   border-bottom: none;
 }
+.checkbox-item{
+  height: 60rpx;
+  margin-top: -30rpx;
+}
 .input-item{
   display: block;
   height: 80rpx;
@@ -112,7 +116,7 @@
   background-color: #eee;
   border-radius: 10rpx;
   line-height: 40rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #333;
   overflow-y: auto;
 }

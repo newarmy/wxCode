@@ -8,10 +8,12 @@
       </view>
      
    </view>
-  <button wx:if="{{!openId}}" bindtap="getUserProfile" class="login-btn">登录</button>
-  <navigator wx:else url="" class="login-success-box">
-    <image src="{{userInfo.avatarUrl}}" class="user-image"/>
-  </navigator>
+   <!-- 
+   <button wx:if="{{!openId}}" bindtap="getUserProfile" class="login-btn">登录</button>
+   <navigator wx:else url="" class="login-success-box">
+      <image src="{{userInfo.avatarUrl}}" class="user-image"/>
+   </navigator>
+    -->
  </view>
  <view class="upload-btn-box">
   <button class="upload-btn-from-album" bindtap="uploadFromAlbum">相册识别</button>

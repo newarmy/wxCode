@@ -1,6 +1,6 @@
 // pages/camera/camera.js
 
-let qNUpload = require('../../utils/qiniuUpload');
+let qNUpload = require('../../utils/wxUpload');
 Page({
 
   /**
@@ -17,7 +17,7 @@ Page({
       quality: 'high',
       success: (res) => {
         let imageKey = 'niu'+Date.now();
-        qNUpload.uploadImage(that, res.tempImagePath, imageKey)
+        qNUpload.uploadImage(that, res.tempImagePath, imageKey, 'camera')
       }
     })
   },

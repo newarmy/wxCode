@@ -23,5 +23,6 @@
   <block wx:else>
     <view class="hint {{isLoadData ? 'show' : ''}}">对不起， 没有识别出问题！</view>
   </block>
+  <navigator url="{{from}}" class="return-btn" open-type="navigateBack">下一题按钮</navigator>
 </view>
 

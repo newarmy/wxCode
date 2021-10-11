@@ -27,7 +27,7 @@ button:not([size='mini']){
 }
 .broadcast-box{
   position: relative;
-  width: 490rpx;
+  width: 590rpx;
   height: 100rpx;
   line-height: 100rpx;
   overflow: hidden;
@@ -41,10 +41,10 @@ button:not([size='mini']){
   color: red;
 }
 .copy-box{
-  left: 490rpx;
+  left: 590rpx;
 }
 
-.login-btn, .login-success-box{
+/* .login-btn, .login-success-box{
   height: 100rpx !important;
   width: 100rpx !important;
   line-height: 100rpx;
@@ -55,7 +55,7 @@ button:not([size='mini']){
   overflow: hidden;
   background-color: #4587FF;
   color:#fff;
-}
+} */
 .user-image{
   height: 100rpx !important;
   width: 100rpx !important;
