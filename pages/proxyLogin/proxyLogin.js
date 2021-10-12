@@ -104,8 +104,8 @@ Page({
         openId: openId,
       });
     }
-    let pn = sesstion.get('proxyN');
-    let pp = sesstion.get('proxyP');
+    let pn = sesstion.get(constant.WX_PROXY_NAME);
+    let pp = sesstion.get(constant.WX_PROXY_PWD);
     if(pn && pp) {
       this.setData({
         proxyName: pn,

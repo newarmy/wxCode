@@ -1,7 +1,7 @@
 <!--pages/addAdvertising/addAdvertising.wxml-->
 
 <view  class="layer-area">
-     <view class="title-area">添加广告</view>
+     <view class="title-area">添加广告内容</view>
      <textarea value="{{advertising}}" class="textarea-style" bindblur="setAdvertising" placeholder="输入广告内容"></textarea>
    
       <view class="page-section">

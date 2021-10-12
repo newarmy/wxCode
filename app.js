@@ -1,5 +1,6 @@
 // app.js
 let loginObj = require('./utils/http/login');
+let constant = require('./utils/http/constants');
 let util = require('./utils/urlConfig.js');
 App({
   onLaunch() {
@@ -15,7 +16,7 @@ App({
      }
    });
    wx.cloud.init({
-     env: 'cloud1-0gas06v534a943cf'
+     env: constant.WX_CLOUD_ENV
    })
    
   },
