@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <view class="container">
- <view class="login-box">
-   <view class="broadcast-icon"></view>
-   <view class="broadcast-box">
+ <view class="login-box" >
+   <view class="broadcast-icon" wx:if="{{advertising}}"></view>
+   <view class="broadcast-box" wx:if="{{advertising}}">
       <view animation="{{animationData}}" class="broadcast-box-text" style="width:{{textWidth}}" id="broadBox">
          {{advertising}}
       </view>

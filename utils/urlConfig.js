@@ -1,11 +1,13 @@
+let host = 'https://ocr-server-1332883-1307883808.ap-shanghai.run.tcloudbase.com';
+//let testHost = "https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com";
 module.exports = {
-  proxyLoginUrl: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/proxy/login',
-  createAccountUrl: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/proxy/create',
-  createActiveCodeUrl: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/proxy/authcode/{{proxyId}}',
-  getRestNumUrl: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/user/rest',
-  activeCodeUrl: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/user/active',
-  getOpenIdUrl: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/user/login',
-  proxyActiveCodeUrl:'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/proxy/charge/{{proxyId}}',
-  setLabelUrl:'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/proxy/setlabel/{{labelId}}',
-  getLabelUrl: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/proxy/label/{{labelId}}',
+  proxyLoginUrl: host + '/proxy/login',
+  createAccountUrl:  host + '/proxy/create',
+  createActiveCodeUrl:  host + '/proxy/authcode/{{proxyId}}',
+  getRestNumUrl:  host + '/user/rest',
+  activeCodeUrl:  host + '/user/active',
+  getOpenIdUrl:  host + '/user/login',
+  proxyActiveCodeUrl: host + '/proxy/charge/{{proxyId}}',
+  setLabelUrl: host + '/proxy/setlabel/{{labelId}}',
+  getLabelUrl:  host + '/proxy/label/{{labelId}}',
 };

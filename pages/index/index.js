@@ -93,7 +93,9 @@ Page({
     }).then(function(json) {
        if(json.code == 200) {
          k.setData({advertising: json.data}, function () {
-               k.setBroadCastSize();
+               if(k.data.advertising) {
+                  k.setBroadCastSize();
+               }
          });
        } else {
         wx.showToast({

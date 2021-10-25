@@ -4,25 +4,25 @@
    <block wx:if="{{list.length > 0}}">
    <view class="question-item" wx:for="{{list}}" wx:key="id"> 
       <view class="question-ask">
-        <view wx:for="{{item.content}}" wx:key="*this">
-          <block wx:if="{{index === 0}}">
-            <view >{{item}}</view>
-          </block> 
-          <block wx:else>
-            <view class="options">{{item}}</view>
-          </block>
+        <text class="type">{{item.type}}</text>
+        <text>{{item.title}}</text>  
+        <image wx:if="{{item.pic}}" mode="widthFix" src="{{item.pic}}" class="question-image"></image>
+      </view>
+      
+      <view class="question-answer">
+        <text class="first">参考答案:</text>
+        <view class="answer-option-box">
+          <view wx:for="{{item.answerList}}" class="answer-option">{{item}}</view>
         </view>
       </view>
-      <view class="question-answer">
-        <text class="first">【答案】:</text>
-        {{item.answer}}
-      </view>
-      <image wx:if="{{item.pic}}" mode="widthFix" src="{{item.pic}}" class="question-image"></image>
+      
    </view>
+   <navigator url="{{from}}" class="return-btn" open-type="navigateBack">继续搜索</navigator>
   </block>
   <block wx:else>
     <view class="hint {{isLoadData ? 'show' : ''}}">对不起， 没有识别出问题！</view>
+    <navigator url="{{from}}" class="return-btn" open-type="navigateBack">继续搜索</navigator>
   </block>
-  <navigator url="{{from}}" class="return-btn" open-type="navigateBack">下一题按钮</navigator>
+ 
 </view>
 

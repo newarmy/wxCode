@@ -7,7 +7,7 @@
   left: 20rpx;
   top: 20rpx;
   width: 710rpx;
-  height: 510rpx;
+  height: 760rpx;
   border-radius: 10rpx;
   border: 2rpx solid #fff;
 }

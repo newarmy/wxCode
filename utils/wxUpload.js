@@ -3,7 +3,7 @@ let promiseFunc = require('./http/promise');
 
 // 图片上传（从相册）方法
 function didPressChooesImage(that, imageFromType) {
-  // 初始化七牛云配置
+  // 云端图片名称
   let imageKey = 'niu'+Date.now();
   
   // 微信 API 选择图片（从相册）
@@ -17,7 +17,7 @@ function didPressChooesImage(that, imageFromType) {
         })
           var filePath = res.tempFilePaths[0];
           // wx.chooseImage 目前微信官方尚未开放获取原图片名功能(2020.4.22)
-          // 向七牛云上传
+          // 上传
           uploadImage(that, filePath, imageKey, imageFromType);
       }
   });
