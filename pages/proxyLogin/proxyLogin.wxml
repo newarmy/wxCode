@@ -32,7 +32,7 @@
      <button class="num-btn" wx:if="{{ loginResult.role === 1}}" bindtap="showAddAccreditNumPage">添加授权次数</button>
      <button class="num-btn" wx:if="{{loginResult.role === 0}}" bindtap="showCreateAccountPage">创建代理账户</button>
      <button class="num-btn" wx:if="{{loginResult.role === 0}}" bindtap="showBroadcastPage">创建公告</button>
-     <view class="broadcast-area">
+     <view class="broadcast-area" wx:if="{{advertising}}">
         <view class="broadcast-title">公告</view>
         <view class="broadcast-content">
           {{advertising}}
