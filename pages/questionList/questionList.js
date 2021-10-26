@@ -1,6 +1,7 @@
 // pages/questionList/questionList.js
 let util = require('../../utils/util');
 let promiseFunc = require('../../utils/http/promise');
+let urlConfig = require('../../utils/urlConfig');
 Page({
 
   /**
@@ -83,7 +84,7 @@ Page({
 
 function requestQuestionData(that, imageKey, openId) {
     promiseFunc({
-       url: 'https://ocr-server-1213654-1307253443.ap-shanghai.run.tcloudbase.com/analysis',
+       url: urlConfig.imageAnalysisUrl,
        header: util.setRequestHeader(that.data.openId),
        data: {
          openId: openId,

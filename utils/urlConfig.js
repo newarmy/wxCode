@@ -10,4 +10,5 @@ module.exports = {
   proxyActiveCodeUrl: host + '/proxy/charge/{{proxyId}}',
   setLabelUrl: host + '/proxy/setlabel/{{labelId}}',
   getLabelUrl:  host + '/proxy/label/{{labelId}}',
+  imageAnalysisUrl: host + '/analysis'
 };
